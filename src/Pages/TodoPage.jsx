@@ -18,7 +18,7 @@ export default function TodoPage(){
         async function getTodo(){
             const token = localStorage.getItem("token");
             try{
-                const res = await axios.get("http://localhost:5000/api/todo",{
+                const res = await axios.get("https://todo-app-backedn.onrender.com/api/todo",{
                 headers : {
                     Authorization : `Bearer ${token}`,
                     "Content-Type" : "application/json",
