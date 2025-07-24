@@ -14,7 +14,7 @@ export default function Todo({title,description,date,onEdit,id,status}){
     async function handleStatus(id){
         const token = localStorage.getItem("token");
         if(isDone){
-            await axios.put(`http://localhost:5000/api/update_status/${id}`,{
+            await axios.put(`https://todo-app-backedn.onrender.com/api/update_status/${id}`,{
                 status : false
             },{
             headers: {
@@ -25,7 +25,7 @@ export default function Todo({title,description,date,onEdit,id,status}){
         setIsDone(false);
         }
         else{
-             await axios.put(`http://localhost:5000/api/update_status/${id}`,{
+             await axios.put(`https://todo-app-backedn.onrender.com/api/update_status/${id}`,{
                 status : true
             },{
             headers: {
