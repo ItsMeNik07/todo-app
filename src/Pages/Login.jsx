@@ -18,7 +18,7 @@ export default function Login(){
 
     async function loginHandler(data){
             try{
-            const res = await axios.post("http://localhost:5000/api/login/user",data);
+            const res = await axios.post("https://todo-app-backedn.onrender.com/api/login/user",data);
             localStorage.setItem("token",res.data.token);
             navigate("/todo")
 
