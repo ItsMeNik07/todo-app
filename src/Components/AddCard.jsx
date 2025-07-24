@@ -46,7 +46,7 @@ export default function AddCard(props){
     }
         else {
         try{
-            const res = await axios.post(https://todo-app-backedn.onrender.com/api/user/todo",data,{
+            const res = await axios.post("https://todo-app-backedn.onrender.com/api/user/todo",data,{
             headers: {
                 Authorization : `Bearer ${token}`,
                  "Content-Type": "application/json",
