@@ -35,7 +35,7 @@ export default function AddCard(props){
     async function addTodo(data){
         const token = localStorage.getItem("token");
         if(props.editData){
-          const res =  await axios.put(`http://localhost:5000/api/update/${props.editData.id}`,data,{
+          const res =  await axios.put(`https://todo-app-backedn.onrender.com/api/update/${props.editData.id}`,data,{
             headers: {
                 Authorization : `Bearer ${token}`,
                  "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function AddCard(props){
     }
         else {
         try{
-            const res = await axios.post("http://localhost:5000/api/user/todo",data,{
+            const res = await axios.post(https://todo-app-backedn.onrender.com/api/user/todo",data,{
             headers: {
                 Authorization : `Bearer ${token}`,
                  "Content-Type": "application/json",
