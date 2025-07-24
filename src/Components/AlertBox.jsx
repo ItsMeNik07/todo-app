@@ -12,14 +12,14 @@ export default function AlertBox({message,actionType,setTodo}){
     const functions = {
         delete : async() => { 
             const token = localStorage.getItem("token");
-            const res1 = await axios.delete(`http://localhost:5000/api/delete/${data.id}`,{
+            const res1 = await axios.delete(`https://todo-app-backedn.onrender.com/api/delete/${data.id}`,{
                 headers : {
                     Authorization : `Bearer ${token}`,
                     "Content-Type" : "application/json",
                 }
             })
 
-                const res2 = await axios.get("http://localhost:5000/api/todo",{
+                const res2 = await axios.get("https://todo-app-backedn.onrender.com/api/todo",{
                 headers : {
                     Authorization : `Bearer ${token}`,
                     "Content-Type" : "application/json",
