@@ -20,7 +20,7 @@ export default function Signup(){
   async function submitHandler(data){
     setError("");
     try{
-      const res = await axios.post("http://localhost:5000/api/register/user",data)
+      const res = await axios.post("https://todo-app-backedn.onrender.com/api/register/user",data)
       navigate("/login");
     }catch(err){
       if(err.response.data.data === 11000){
