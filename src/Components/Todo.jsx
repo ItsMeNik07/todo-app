@@ -54,7 +54,8 @@ export default function Todo({title,description,date,onEdit,id,status}){
             <div className="flex items-center justify-between">
                 <div className="flex space-x-2">
                 <p className="font-medium">{title}</p>
-                <button className="text-xs rounded-md bg-[#3C3C3C] text-[#D9D9D9] p-1 cursor-pointer font-medium hover:shadow-md shadow-gray-400 text-gray lg:hidden group-hover:block" onClick={()=>handleStatus(id)} disabled={isMarkLoading}> {isMarkLoading?"Updating":isDone?"Mark as Undone":"Mark as Done"}</button>
+                {!isOverdue && <button className="text-xs rounded-md bg-[#3C3C3C] text-[#D9D9D9] p-1 cursor-pointer font-medium hover:shadow-md shadow-gray-400 text-gray lg:hidden group-hover:block" onClick={()=>handleStatus(id)} disabled={isMarkLoading}> {isMarkLoading?"Updating":isDone?"Mark as Undone":"Mark as Done"}</button>}
+                
                 </div>
                 <MdEdit className="text-lg cursor-pointer hover:scale-125 transition-all duration-300 ease-in-out lg:hidden group-hover:block" onClick={()=>onEdit({title,description,date,id})}/>
             </div>

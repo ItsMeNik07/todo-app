@@ -48,16 +48,14 @@ export default function AlertBox({message,actionType,setTodo}){
         }
     }
     return(
-            <div className="bg-[#D9D9D9] px-10 py-6 rounded-2xl mx-6 md:px-10 space-y-4 font-medium">
-                {isLoading ?<div>
-                    <h6>Deleting todo...</h6>
-                </div> : <div className="space-y-4"><h6>{message}</h6>
+             isLoading ?<div>
+                    <h6 className="text-[#D9D9D9] font-medium">Deleting todo...</h6>
+                </div> : <div className="bg-[#D9D9D9] px-10 py-6 rounded-2xl mx-6 md:px-10 space-y-4 font-medium"><h6>{message}</h6>
                 <div className="text-[#D9D9D9] text-sm flex justify-between">
                     <button className="bg-[#3C3C3C] px-4 py-1 rounded-md cursor-pointer hover:bg-[#454545]" onClick={performAction}>Yes</button>
                     <button className="bg-[#3C3C3C] px-4 py-1 rounded-md cursor-pointer hover:bg-[#454545]" onClick={()=>setAlertDisplay(false)}>No</button>
                 </div>
-                </div>}
-               
             </div>
+            
     )
 }
