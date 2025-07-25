@@ -11,7 +11,7 @@ export default function Login(){
         register,
         handleSubmit,
         setError,
-        formState : {errors}
+        formState : {errors,isSubmitting}
     } = useForm({
         resolver:zodResolver(loginSchema)
     });
@@ -59,7 +59,7 @@ export default function Login(){
                         </div>
 
                         {/* login button */}
-                        <button className="bg-[#3C3C3C] w-full h-8 rounded-md cursor-pointer text-[#D9D9D9] hover:bg-[#454545] mt-6" onClick={handleSubmit(loginHandler)}>Login</button>
+                        <button className="bg-[#3C3C3C] w-full h-8 rounded-md cursor-pointer text-[#D9D9D9] hover:bg-[#454545] mt-6" onClick={handleSubmit(loginHandler)} disabled={isSubmitting}>{isSubmitting ? "Logging":"Login"}</button>
                 </form>
             </div>
         </div>

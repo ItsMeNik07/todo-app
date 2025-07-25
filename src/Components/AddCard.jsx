@@ -27,7 +27,7 @@ export default function AddCard(props){
     const {
         register,
         handleSubmit,
-        formState :{errors}
+        formState :{errors, isSubmitting}
     } = useForm({
         resolver : zodResolver(todoSchema)
     })
@@ -43,17 +43,19 @@ export default function AddCard(props){
         })
         const todos = res.data.todos.reverse();
         props.setTodo(todos);
+        props.onClick(false);
     }
-        else {
+    else {
         try{
             const res = await axios.post("https://todo-app-backedn.onrender.com/api/user/todo",data,{
-            headers: {
-                Authorization : `Bearer ${token}`,
-                 "Content-Type": "application/json",
+                headers: {
+                    Authorization : `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                }
             }
-        }
         )
         props.setTodo([res.data.todo,...props.todo]);
+        props.onClick(false);
         }catch(err){
             console.log(err);
         }
@@ -71,13 +73,13 @@ export default function AddCard(props){
             <form className="space-y-2 mt-2">
                 <div className="title space-y-1">
                 <label htmlFor="">Title</label>
-                <InputBox {...register("title")} maxLength={15} placeholder={"Enter Title"} defaultValue = {title}/>
+                <InputBox {...register("title")} maxLength={20} placeholder={"Enter Title"} defaultValue = {title}/>
                 {errors.title && <p className="text-sm text-red-700">{errors.title.message}</p>}
                  </div>
 
             <div className="description space-y-1">
                 <label htmlFor="" className="block">Description</label>
-                <textarea placeholder="Enter Description" className="bg-[#F7F7F7] w-72 h-24 rounded-lg px-2 py-1 text-sm resize-none lg:w-full" maxLength={50} {...register("description")} defaultValue={description}/>
+                <textarea placeholder="Enter Description" className="bg-[#F7F7F7] w-72 h-24 rounded-lg px-2 py-1 text-sm resize-none lg:w-full" maxLength={200} {...register("description")} defaultValue={description}/>
                 {errors.description && <p className="text-sm text-red-700">{errors.description.message}</p>}
             </div>
 
@@ -89,7 +91,7 @@ export default function AddCard(props){
                 </div>
             </div>
             <div className="flex items-center justify-center mt-6">
-            <button className="bg-[#3C3C3C] w-20 h-8 rounded-md cursor-pointer text-[#D9D9D9] hover:bg-[#454545]" onClick={handleSubmit(addTodo)}>Add</button>
+            <button className="bg-[#3C3C3C] w-20 h-8 rounded-md cursor-pointer text-[#D9D9D9] hover:bg-[#454545]" onClick={handleSubmit(addTodo)} disabled={isSubmitting}>{isSubmitting?"Adding":"Add"}</button>
             </div>
             </form>
            

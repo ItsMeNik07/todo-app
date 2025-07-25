@@ -13,9 +13,11 @@ export default function TodoPage(){
     const [editData,setEditData] = useState(null);
     const [todo,setTodo] = useState([]);
     const {alertDisplay,actionType,message} = useContext(AlertContext);
+    const [isLoading,setIsLoading] = useState(false);
     const navigate = useNavigate();
     useEffect(()=>{
         async function getTodo(){
+            setIsLoading(true);
             const token = localStorage.getItem("token");
             try{
                 const res = await axios.get("https://todo-app-backedn.onrender.com/api/todo",{
@@ -25,14 +27,21 @@ export default function TodoPage(){
                 }
             });
             setTodo(res.data.todos.reverse());
-            }catch(err){
-                navigate("/");
-                console.log(err);
-            }
+        }catch(err){
+            navigate("/");
+            console.log(err);
+        }
+        setIsLoading(false);
             
         }
         getTodo();
     },[])
+    if(isLoading) return(
+        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="w-10 h-10 border-4 border-[#D9D9D9] border-t-transparent rounded-full animate-spin"></div>
+        <p className="mt-4 text-[#D9D9D9] font-semibold">Fetching your todos...</p>
+      </div>
+    )
     return(
         <div>
              <Navbar />
